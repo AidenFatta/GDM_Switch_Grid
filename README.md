@@ -28,3 +28,4 @@ Current Bugs:
 
 When holding a button and pulling up the pause menu, the button will continuously be held until another input is read when the menu is closed.
 Attempting to bind a key to the key that is already in use for that action will cause the text “Key in use” to be displayed on the remap button for that action until the mapping is changed to a different key.
+While debugging, some menu options were set to false active to test. These options were left false active in the commit, so if testing on your own system, make sure to set the canvases to active in LevelS1 Scene.
