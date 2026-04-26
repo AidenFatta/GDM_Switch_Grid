@@ -3,21 +3,30 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private GameObject levelManager;
     public TextMeshProUGUI timerText;
-    public float startingTime;
 
     private void OnEnable()
     {
-        //Subscribe to game manager timer event and player pause event
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager");
+
+        if (levelManager != null)
+        {
+            levelManager.GetComponent<LevelManager>().OnTimerChange += UpdateTimer;
+        }
+
     }
 
     private void OnDisable()
     {
-        //Unsubscribe to game manager timer event and player pause event
+        if (levelManager != null)
+        {
+            levelManager.GetComponent<LevelManager>().OnTimerChange += UpdateTimer;
+        }
     }
     private void UpdateTimer(float time)
     {
-        timerText.text = System.TimeSpan.FromSeconds(time).ToString(@"mm\:ss");
+        timerText.text = System.TimeSpan.FromSeconds(time).ToString(@"mm\:ss\:ff");
     }
 }
 

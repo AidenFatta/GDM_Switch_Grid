@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - MainMenu
+  - SettingsMenu
+  - GameUI
+  - MenuManager
+  - StrongBot
+  - Crate
+  - LevelManager
+  - Goal
+  - CompleteUI
+  - FailedUI
   layers:
   - Default
   - TransparentFX
@@ -43,6 +53,9 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 1229742835
+    locked: 0
+  - name: Objects
+    uniqueID: 805230505
     locked: 0
   - name: Player
     uniqueID: 816600023

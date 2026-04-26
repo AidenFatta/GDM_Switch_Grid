@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -33,20 +34,31 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //Building lists to easily manage what music should play for what scene
-        menuScenes = new List<string> { "MainMenu", "SinglePlayerSelect", "Lobby", "MultiplayerSelect"};
+        menuScenes = new List<string> {"MainMenu", "SinglePlayerSelect", "Lobby", "MultiplayerSelect"};
         UpdateMusicForScene(SceneManager.GetActiveScene().name);   
+    }
+
+    private void Update()
+    {
+        /* Unused for now, for debugging purposes.
+        if (Input.GetButtonDown("Fire1"))
+        {
+            PlaySound(buttonClickSound);
+        }
+        */
     }
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
+
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
     }
-    public void playMusic(AudioClip clip)
+    public void playMusic(AudioClip clip, float volume = 1f)
     {
         musicSource.clip = clip;
         musicSource.loop = true;
@@ -73,13 +85,22 @@ public class AudioManager : MonoBehaviour
     //Still need to set up audio listeners for sound effects, like clicking buttons and shooting. 
     public void PlaySound(AudioClip clip, float volume = 1f)
     {
-        sfxSource.PlayOneShot(clip, volume);
+        sfxSource.PlayOneShot(clip, sfxSource.volume);
     }
 
     public void ChangeMusic(AudioClip newMusic)
     {
         if (musicSource.clip == newMusic) return;
         musicSource.Stop();
-        playMusic(newMusic);
+        playMusic(newMusic, musicSource.volume);
+    }
+
+    public void ChangeMusicVolume(float newVolume)
+    {
+        musicSource.volume = newVolume;
+    }
+    public void ChangeSFXVolume(float newVolume)
+    {
+        sfxSource.volume = newVolume;
     }
 }
