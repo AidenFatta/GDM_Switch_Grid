@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour
         gameUICanvas = GameObject.FindGameObjectWithTag("GameUI");
         levelCompleteCanvas = GameObject.FindGameObjectWithTag("CompleteUI");
         levelFailedCanvas = GameObject.FindGameObjectWithTag("FailedUI");
+        Debug.Log("Level Failed Canvas found level manager: " + levelFailedCanvas);
         if (mainCanvas != null) mainCanvas.gameObject.SetActive(true);
         if (gameUICanvas != null) gameUICanvas.gameObject.SetActive(true);
         if (settingCanvas != null) settingCanvas.gameObject.SetActive(false);
